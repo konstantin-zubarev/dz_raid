@@ -146,8 +146,9 @@ sde         8:64   0  250M  0 disk
   |-md0p3 259:2    0  100M  0 md     /raid/part3
   |-md0p4 259:3    0   99M  0 md     /raid/part4
   `-md0p5 259:4    0   98M  0 md     /raid/part5
-sdf         8:80   0  250M  0 disk   
+sdf         8:80   0  250M  0 disk  
 
 
-Ссылка на методичку:
-https://github.com/konstantin-zubarev/manual_kernel_update/blob/master/manual/manual.md
+методичку
+1. Методичка (RAID, NVME).pdf
+2. Методичка_Дисковая_подсистема_RAID_Linux-5373-0fc5b2.pdf
