@@ -12,7 +12,8 @@ nano ~/my_project/2_raid/dz/Vagrantfile
 
 Занулим на всякий случай суперблоки:
 [vagrant@otuslinux ~]$ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,}
--------------------------------------------------------------------------------------------------------
+
+
 2. Создадим REID10
 [vagrant@otuslinux ~]$ sudo mdadm --create --verbose /dev/md0 -l 10 -n 4 /dev/sd{b,c,d,e}
 -l 10 уровень REID
