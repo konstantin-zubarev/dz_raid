@@ -115,6 +115,7 @@ vagrant@otuslinux ~]$ cat /proc/mdstat
 
 [root@otuslinux ~]# lsblk
 
+Утилитой asciinema можно воспроизвести файл dz_raid.cast
 
 методички:
 1. Методичка (RAID, NVME).pdf
