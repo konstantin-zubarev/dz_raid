@@ -24,7 +24,8 @@ nano ~/my_project/2_raid/dz/Vagrantfile
 Personalities : [raid10] 
 md0 : active raid10 sde[3] sdd[2] sdc[1] sdb[0]
       507904 blocks super 1.2 512K chunks 2 near-copies [4/4] [UUUU]
--------------------------------------------------------------------------------------------------------
+
+
 3. Создание конфигурационного файла mdadm.conf
 Проверим
 [vagrant@otuslinux ~]$ sudo mdadm --detail --scan --verbose
@@ -35,7 +36,8 @@ md0 : active raid10 sde[3] sdd[2] sdc[1] sdb[0]
 создадим файл mdadm.conf
 [root@otuslinux ~]$ echo "DEVICE partitions" > /etc/mdadm/mdadm.conf
 [root@otuslinux ~]# mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
--------------------------------------------------------------------------------------------------------
+
+
 4. Сломать/починить RAID
 Выведим один диск из строя sde
 [vagrant@otuslinux ~]$ sudo mdadm /dev/md0 --fail /dev/sde
@@ -55,6 +57,7 @@ md0 : active raid10 sde[3](F) sdd[2] sdc[1] sdb[0]
 
 Проверим состояние RAID
 [vagrant@otuslinux ~]$ cat /proc/mdstat
+
 -------------------------------------------------------------------------------------------------------
 5. Создать GPT на RAID
 [vagrant@otuslinux ~]$ sudo parted -s /dev/md0 mklabel gpt
