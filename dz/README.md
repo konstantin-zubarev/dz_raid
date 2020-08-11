@@ -1,6 +1,9 @@
 1. Добавить в Vagrantfile еще дисков:
+
 nano ~/my_project/2_raid/dz/Vagrantfile
+
 в раздели ":disks => {" добавим блок
+
 :sata5 => {
                         :dfile => home + '/VirtualBox VMs/disks/sata5.vdi',
                         :size => 250,
@@ -8,19 +11,25 @@ nano ~/my_project/2_raid/dz/Vagrantfile
                 }
 
 Собираю RAID10. Для этого командой посмотрю кол-во дисков (нужно 4 шт.)
+
 [vagrant@otuslinux ~]$ lsblk
 
 Занулим на всякий случай суперблоки:
+
 [vagrant@otuslinux ~]$ sudo mdadm --zero-superblock --force /dev/sd{b,c,d,e,}
 
 
 2. Создадим REID10
+
 [vagrant@otuslinux ~]$ sudo mdadm --create --verbose /dev/md0 -l 10 -n 4 /dev/sd{b,c,d,e}
+
 -l 10 уровень REID
 -n 4 кол-во устройств в RAID
 
 Проверим что RAID собрался нормально:
+
 [vagrant@otuslinux ~]$ cat /proc/mdstat
+
 Personalities : [raid10] 
 md0 : active raid10 sde[3] sdd[2] sdc[1] sdb[0]
       507904 blocks super 1.2 512K chunks 2 near-copies [4/4] [UUUU]
@@ -37,6 +46,7 @@ md0 : active raid10 sde[3] sdd[2] sdc[1] sdb[0]
 [root@otuslinux ~]$ echo "DEVICE partitions" > /etc/mdadm/mdadm.conf
 [root@otuslinux ~]# mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
 
+-------------------------------------------------------------------------------------------------------
 
 4. Сломать/починить RAID
 Выведим один диск из строя sde
